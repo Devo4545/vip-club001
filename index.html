@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Club - Özel Arşiv & Premium İçerik</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Üst Menü -->
+  <header>
+    <div class="logo">
+      <i class="fa-solid fa-fire-flame-curved"></i> VIP Club <span style="font-size:0.7rem; color:#ec4899; border:1px solid #ec4899; padding:2px 6px; border-radius:4px; margin-left:5px;">+18 VIP</span>
+    </div>
+    
+    <div class="nav-user">
+      <div class="coin-badge">
+        <i class="fa-solid fa-coins"></i> Bakiye: <span id="user-coins">0</span> Coin
+      </div>
+      <button class="btn-buy-coin" id="btn-open-store">
+        <i class="fa-solid fa-store"></i> Coin Mağazası
+      </button>
+
+      <!-- Auth Butonları -->
+      <div class="auth-buttons" id="auth-btn-group">
+        <button class="btn-secondary" id="btn-open-login">Giriş Yap</button>
+        <button class="btn-primary" id="btn-open-register"><i class="fa-solid fa-gift"></i> VIP Üye Ol & %20 Bonus</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SOL ALT CANLI BİLDİRİM BALONU -->
+  <div class="live-toast" id="live-toast">
+    <div class="toast-icon-wrap"><i class="fa-solid fa-bolt" style="color: #ec4899;"></i></div>
+    <div class="toast-content">
+      <span class="toast-title" id="toast-title">Canlı İşlem</span>
+      <span class="toast-desc" id="toast-desc">Emre D. az önce 100 Coin satın aldı!</span>
+    </div>
+  </div>
+
+  <!-- ANA DÜZEN (İçerik + Sağ Reklam Paneli) -->
+  <div class="main-layout-wrapper">
+
+    <!-- SOL / ANA İÇERİK ALANI -->
+    <div class="content-side">
+      <!-- Hero Banner -->
+      <section class="hero">
+        <div class="hero-badge"><i class="fa-solid fa-lock-open"></i> Tamamen Gizli & 256-bit SSL Korumalı</div>
+        <h1>Özel Sinematik Arşiv & HD Koleksiyonlar</h1>
+        <p>Sadece VIP üyelere özel, sansürsüz ve yüksek çözünürlüklü özel içerikleri anında keşfet.</p>
+        
+        <!-- GİZLİ VİP KOD GİRİŞ ALANI -->
+        <div class="vip-code-box">
+          <input type="text" id="vip-secret-input" placeholder="Gizli VIP Kodunu Girin">
+          <button onclick="checkVipCode()"><i class="fa-solid fa-key"></i> Kodu Doğrula</button>
+        </div>
+
+        <!-- Güven Rozetleri Barı -->
+        <div class="trust-badges-bar">
+          <span><i class="fa-solid fa-user-ninja"></i> %100 Gizli & Anonim</span>
+          <span><i class="fa-solid fa-bolt"></i> Anında Otomatik Teslimat</span>
+          <span><i class="fa-solid fa-crown"></i> Full HD & 4K VIP Kalite</span>
+        </div>
+      </section>
+
+      <!-- KATEGORİ FİLTRELEME SEKMELERİ -->
+      <div class="filter-tabs-bar">
+        <button class="filter-tab active" onclick="filterGallery('all')">🔥 Tüm Arşiv</button>
+        <button class="filter-tab" onclick="filterGallery('photo')">📸 Fotoğraf Setleri (8)</button>
+        <button class="filter-tab" onclick="filterGallery('video')">🎬 VIP Videolar (8)</button>
+        <!-- Selen Damlacık Sekmesi (Başta Gizli) -->
+        <button class="filter-tab" id="selen-tab-btn" style="display:none; background: #ec4899; color: white;" onclick="filterGallery('selen')">✨ Selen Damlacık Özel (4 Fito / 4 Video)</button>
+      </div>
+
+      <!-- Galeriler -->
+      <main class="gallery-container">
+        <div class="grid" id="main-gallery-grid">
+
+          <!-- ================= ANA MENÜ: 8 FOTOĞRAF ================= -->
+          <div class="photo-card" data-category="photo" data-price="50" data-title="Gece Kulübü Seti" data-type="photo" data-src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Gece Kulübü Seti</span><span class="card-price"><i class="fa-solid fa-coins"></i> 50</span></div>
+            <button class="btn-unlock">Kilidi Aç (50 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="30" data-title="Sahil Partisi" data-type="photo" data-src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Sahil Partisi</span><span class="card-price"><i class="fa-solid fa-coins"></i> 30</span></div>
+            <button class="btn-unlock">Kilidi Aç (30 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="40" data-title="Stüdyo Koleksiyonu" data-type="photo" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Stüdyo Koleksiyonu</span><span class="card-price"><i class="fa-solid fa-coins"></i> 40</span></div>
+            <button class="btn-unlock">Kilidi Aç (40 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="60" data-title="Neon Işıklar" data-type="photo" data-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Neon Işıklar</span><span class="card-price"><i class="fa-solid fa-coins"></i> 60</span></div>
+            <button class="btn-unlock">Kilidi Aç (60 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="45" data-title="Yaz Modası Seti" data-type="photo" data-src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Yaz Modası Seti</span><span class="card-price"><i class="fa-solid fa-coins"></i> 45</span></div>
+            <button class="btn-unlock">Kilidi Aç (45 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="35" data-title="Özel Portreler" data-type="photo" data-src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Özel Portreler</span><span class="card-price"><i class="fa-solid fa-coins"></i> 35</span></div>
+            <button class="btn-unlock">Kilidi Aç (35 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="55" data-title="Balkon Çekimleri" data-type="photo" data-src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Balkon Çekimleri</span><span class="card-price"><i class="fa-solid fa-coins"></i> 55</span></div>
+            <button class="btn-unlock">Kilidi Aç (55 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="photo" data-price="70" data-title="VIP Dergi Çekimi" data-type="photo" data-src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=1200&q=80">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">VIP Dergi Çekimi</span><span class="card-price"><i class="fa-solid fa-coins"></i> 70</span></div>
+            <button class="btn-unlock">Kilidi Aç (70 Coin)</button>
+          </div>
+
+
+          <!-- ================= ANA MENÜ: 8 VİDEO ================= -->
+          <div class="photo-card" data-category="video" data-price="150" data-title="Dans Sahnesi" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-party-lights-in-a-dark-room-41566-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Dans Sahnesi</span><span class="card-price"><i class="fa-solid fa-coins"></i> 150</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (150 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="180" data-title="Havuz Partisi" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Havuz Partisi</span><span class="card-price"><i class="fa-solid fa-coins"></i> 180</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (180 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="200" data-title="Sahne Arkası" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-2408-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Sahne Arkası</span><span class="card-price"><i class="fa-solid fa-coins"></i> 200</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (200 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="120" data-title="Slow-Mo Pozlar" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-waterfall-in-forest-2213-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Slow-Mo Pozlar</span><span class="card-price"><i class="fa-solid fa-coins"></i> 120</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (120 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="250" data-title="VIP Özel Şov" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-northern-lights-in-the-night-sky-42861-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">VIP Özel Şov</span><span class="card-price"><i class="fa-solid fa-coins"></i> 250</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (250 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="160" data-title="Gün Batımı Klip" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-sun-setting-over-the-sea-41617-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Gün Batımı Klip</span><span class="card-price"><i class="fa-solid fa-coins"></i> 160</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (160 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="190" data-title="Özel Yat Partisi" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-party-lights-in-a-dark-room-41566-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Özel Yat Partisi</span><span class="card-price"><i class="fa-solid fa-coins"></i> 190</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (190 Coin)</button>
+          </div>
+
+          <div class="photo-card" data-category="video" data-price="220" data-title="Gece Kulübü VIP" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4">
+            <div class="image-wrapper locked"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Gece Kulübü VIP</span><span class="card-price"><i class="fa-solid fa-coins"></i> 220</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (220 Coin)</button>
+          </div>
+
+
+          <!-- ================= SELEN DAMLACIK ÖZEL: 4 FOTOĞRAF (COİN'Lİ) ================= -->
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="80" data-title="Selen Damlacık - Özel Set 1" data-type="photo" data-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #ec4899;">Selen Özel</div><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Set 1</span><span class="card-price"><i class="fa-solid fa-coins"></i> 80</span></div>
+            <button class="btn-unlock">Kilidi Aç (80 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="90" data-title="Selen Damlacık - Özel Set 2" data-type="photo" data-src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #ec4899;">Selen Özel</div><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Set 2</span><span class="card-price"><i class="fa-solid fa-coins"></i> 90</span></div>
+            <button class="btn-unlock">Kilidi Aç (90 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="100" data-title="Selen Damlacık - Özel Set 3" data-type="photo" data-src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #ec4899;">Selen Özel</div><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Set 3</span><span class="card-price"><i class="fa-solid fa-coins"></i> 100</span></div>
+            <button class="btn-unlock">Kilidi Aç (100 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="120" data-title="Selen Damlacık - Özel Set 4" data-type="photo" data-src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #ec4899;">Selen Özel</div><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-lock"></i><span>Kilitli Görsel</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Set 4</span><span class="card-price"><i class="fa-solid fa-coins"></i> 120</span></div>
+            <button class="btn-unlock">Kilidi Aç (120 Coin)</button>
+          </div>
+
+
+          <!-- ================= SELEN DAMLACIK ÖZEL: 4 VİDEO (COİN'Lİ) ================= -->
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="250" data-title="Selen Damlacık - Özel Video 1" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #8b5cf6;">Selen Video</div><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon" style="color:#8b5cf6;"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Video 1</span><span class="card-price"><i class="fa-solid fa-coins"></i> 250</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (250 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="280" data-title="Selen Damlacık - Özel Video 2" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-clouds-and-blue-sky-2408-large.mp4" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #8b5cf6;">Selen Video</div><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon" style="color:#8b5cf6;"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Video 2</span><span class="card-price"><i class="fa-solid fa-coins"></i> 280</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (280 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="300" data-title="Selen Damlacık - Özel Video 3" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-northern-lights-in-the-night-sky-42861-large.mp4" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #8b5cf6;">Selen Video</div><img src="https://images.unsplash.com/photo-1511497584788-876761c119ee?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon" style="color:#8b5cf6;"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Özel Video 3</span><span class="card-price"><i class="fa-solid fa-coins"></i> 300</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (300 Coin)</button>
+          </div>
+
+          <div class="photo-card selen-exclusive-item" data-category="selen" data-price="350" data-title="Selen Damlacık - Özel Video 4" data-type="video" data-src="https://assets.mixkit.co/videos/preview/mixkit-waterfall-in-forest-2213-large.mp4" style="display:none;">
+            <div class="image-wrapper locked"><div class="badge-trending" style="background: #8b5cf6;">Selen Video</div><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt=""><div class="lock-overlay"><i class="fa-solid fa-play-circle play-icon" style="color:#8b5cf6;"></i><span>HD Video</span></div></div>
+            <div class="card-info"><span class="card-title">Selen Damlacık - Özel Video 4</span><span class="card-price"><i class="fa-solid fa-coins"></i> 350</span></div>
+            <button class="btn-unlock btn-video-unlock">Kilidi Aç (350 Coin)</button>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- SAĞ TARAF REKLAM & FIRSAT PANELİ -->
+    <aside class="live-sidebar">
+      <div class="promo-box">
+        <div class="promo-badge">SINIRLI SAYIDA 🔥</div>
+        <h4>%50 Mega Bonus Fırsatı</h4>
+        <p>500 Coin ve üzeri yüklemelerde anında +250 Coin hediye bakiyeniz hesabınıza yüklenir!</p>
+        <button class="btn-promo-action" onclick="openStoreModal()">Fırsatı Yakala</button>
+      </div>
+
+      <div class="live-stats-box">
+        <h3><i class="fa-solid fa-chart-line" style="color: #ec4899;"></i> Canlı Platform Durumu</h3>
+        <div class="stat-row"><span>Anlık Aktif Üye:</span><span class="stat-val" id="online-counter">1,428</span></div>
+        <div class="stat-row"><span>Bugün Açılan Arşiv:</span><span class="stat-val">342 Adet</span></div>
+        <div class="stat-row"><span>Sistem Güvenliği:</span><span class="stat-val" style="color: #34d399;">%100 Aktif</span></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- MODALLER -->
+  <div class="modal-backdrop" id="detail-modal">
+    <div class="modal-content detail-content">
+      <button class="modal-close" id="btn-close-detail-modal">&times;</button>
+      <h3 id="detail-title" class="detail-title">İçerik Başlığı</h3>
+      <div class="detail-media-container" id="detail-media-container"></div>
+      <div class="detail-footer" id="detail-footer"></div>
+    </div>
+  </div>
+
+  <!-- GİRİŞ / KAYIT MODALI -->
+  <div class="modal-backdrop" id="auth-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="btn-close-auth-modal">&times;</button>
+      <div class="auth-welcome-banner"><i class="fa-solid fa-gift"></i><span>VIP Kayda Özel <strong>%20 Bonus Coin</strong> Hediyesi!</span></div>
+      <div class="modal-tabs">
+        <button class="tab-btn active" id="tab-login-btn">Giriş Yap</button>
+        <button class="tab-btn" id="tab-register-btn">Kayıt Ol</button>
+      </div>
+      <form id="form-login" class="auth-form active-form">
+        <div class="input-group"><label>E-posta Adresi</label><input type="email" id="login-email" placeholder="ornek@mail.com" required></div>
+        <div class="input-group"><label>Şifre</label><input type="password" id="login-password" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-submit">Giriş Yap</button>
+      </form>
+      <form id="form-register" class="auth-form">
+        <div class="input-group"><label>E-posta Adresi</label><input type="email" id="reg-email" placeholder="ornek@mail.com" required></div>
+        <div class="input-group"><label>Telefon Numarası</label><input type="tel" id="reg-phone" placeholder="05XXXXXXXXX" maxlength="11" oninput="this.value = this.value.replace(/\D/g, '')" required></div>
+        <div class="input-group"><label>Şifre (En az 6 karakter)</label><input type="password" id="reg-password" placeholder="••••••••" required></div>
+        <button type="submit" class="btn-submit">VIP Üyeliği Başlat</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MAĞAZA MODALI -->
+  <div class="modal-backdrop" id="store-modal">
+    <div class="modal-content store-content">
+      <button class="modal-close" id="btn-close-store-modal">&times;</button>
+      <div class="store-header"><h2><i class="fa-solid fa-coins"></i> VIP Coin Mağazası</h2><p>Bakiye yükleyerek özel içeriklerin kilidini anında açın!</p></div>
+      <div class="packages-grid">
+        <div class="package-card"><div class="package-coins"><i class="fa-solid fa-coins"></i> 50 Coin</div><div class="package-price">10 TL</div><button class="btn-buy-package" data-coins="50" data-price="10">Satın Al</button></div>
+        <div class="package-card popular"><div class="badge-popular">En Çok Tercih Edilen 🔥</div><div class="package-coins"><i class="fa-solid fa-coins"></i> 100 Coin</div><div class="package-price">15 TL</div><button class="btn-buy-package" data-coins="100" data-price="15">Satın Al</button></div>
+        <div class="package-card"><div class="package-coins"><i class="fa-solid fa-coins"></i> 250 Coin</div><div class="package-price">30 TL</div><button class="btn-buy-package" data-coins="250" data-price="30">Satın Al</button></div>
+        <div class="package-card popular" style="border-color: #ec4899;"><div class="badge-popular" style="background: #ec4899; color: white;">+100 Coin Bonus 🎁</div><div class="package-coins"><i class="fa-solid fa-coins"></i> 500 Coin</div><div class="package-price">55 TL</div><button class="btn-buy-package" data-coins="500" data-price="55" style="background: #ec4899;">Satın Al</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ÖDEME MODALI -->
+  <div class="modal-backdrop" id="checkout-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="btn-close-checkout-modal">&times;</button>
+      <div class="store-header" style="margin-bottom: 1.2rem;"><h2><i class="fa-solid fa-shield-halved" style="color: #ec4899;"></i> Anonim & Güvenli Ödeme</h2><p id="checkout-summary">Seçilen Paket: 0 Coin - 0 TL</p></div>
+      <form id="form-checkout" class="auth-form active-form">
+        <div class="input-group"><label>Kart Numarası</label><input type="tel" id="card-number" placeholder="4543 1234 5678 9012" maxlength="16" oninput="this.value = this.value.replace(/\D/g, '')" required></div>
+        <div class="input-group"><label>Son Kullanma Tarihi</label><input type="text" id="card-expiry" placeholder="11/28" maxlength="5" oninput="this.value = this.value.replace(/\D/g, '').replace(/^(\d{2})(\d)/, '$1/$2')" required></div>
+        <div class="input-group"><label>CVC / Güvenlik Kodu</label><input type="tel" id="card-cvc" placeholder="123" maxlength="3" oninput="this.value = this.value.replace(/\D/g, '')" required></div>
+        <button type="submit" class="btn-submit">Ödemeyi Onayla & Coin Yükle</button>
+        <div class="secure-ssl-note"><i class="fa-solid fa-user-shield"></i> Gizli Ekstre & %100 256-Bit SSL Koruması</div>
+        <div id="successMsg" class="success-msg" style="display:none; color: #ec4899; margin-top: 10px; font-weight: bold; text-align: center;">Ödeme başarılı! Coin'leriniz yüklendi.</div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // --- KOD DOĞRULAMA (SELEN DAMLACIK) ---
+    function checkVipCode() {
+      const codeInput = document.getElementById('vip-secret-input').value.trim();
+      const tabBtn = document.getElementById('selen-tab-btn');
+
+      if (codeInput === "SelennDmlck00") {
+        alert("🎉 Doğrulama Başarılı! Selen Damlacık'a özel gizli arşiv açıldı.");
+        tabBtn.style.display = "inline-block";
+        filterGallery('selen');
+      } else {
+        alert("❌ Geçersiz VIP Kodu!");
+      }
+    }
+
+    // --- KATEGORİ FİLTRELEME ---
+    function filterGallery(type) {
+      document.querySelectorAll('.filter-tab').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.photo-card');
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (type === 'all') {
+          // 'all' dendiğinde sadece ana menüdekiler (photo ve video) görünsün, selen gizli kalsın
+          if (cat === 'selen') {
+            card.style.display = 'none';
+          } else {
+            card.style.display = 'block';
+          }
+        } else {
+          if (cat === type) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    }
+
+    // --- TOAST BİLDİRİMLERİ ---
+    const toastData = [
+      { title: "Yeni Satın Alma 🔥", desc: "Emre D. az önce 100 Coin satın aldı!" },
+      { title: "VIP Arşiv Kilidi 🔓", desc: "Burak S. özel bir setin kilidini açtı." },
+      { title: "Mega Kampanya 🎁", desc: "Caner K. 500 Coin yükleyerek +100 Bonus kazandı!" }
+    ];
+
+    setInterval(() => {
+      const toast = document.getElementById('live-toast');
+      const titleEl = document.getElementById('toast-title');
+      const descEl = document.getElementById('toast-desc');
+      const randomItem = toastData[Math.floor(Math.random() * toastData.length)];
+      
+      titleEl.textContent = randomItem.title;
+      descEl.textContent = randomItem.desc;
+      toast.classList.add('show');
+
+      setTimeout(() => { toast.classList.remove('show'); }, 4500);
+    }, 7000);
+  </script>
+</body>
+</html>
